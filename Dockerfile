@@ -20,7 +20,7 @@ RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 ENV DISPLAY=:99
 
 RUN pip install --upgrade pip
+RUN ls -al
+RUN pip install -r ./app/requirements.txt
 
-RUN pip install -r requirements.txt
-
-CMD ["python", "./main.py"]
+CMD ["python", "./app/main.py"]
