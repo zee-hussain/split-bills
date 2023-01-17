@@ -1,6 +1,6 @@
 import datetime
 import os
-import app.parasitesplitwise as parasitesplitwise
+import parasitesplitwise as parasitesplitwise
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
