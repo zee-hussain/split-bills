@@ -1,13 +1,14 @@
 import datetime
-import parasitesplitwise
+import os
+import app.parasitesplitwise as parasitesplitwise
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import time
 
 options = Options()
-# options.headless = True
-driver = webdriver.Chrome("/opt/homebrew/bin/chromedriver", options=options)
+options.headless = True
+driver = webdriver.Chrome("/usr/local/bin/chromedriver", options=options)
 
 
 class Utility(object):
@@ -23,7 +24,7 @@ class Utility(object):
         username = driver.find_element(By.XPATH, "/html/body/div[2]/div[3]/section/div/fieldset/form/div[1]/input")
         username.send_keys("zeehussain")
         password = driver.find_element(By.XPATH,"/html/body/div[2]/div[3]/section/div/fieldset/form/div[2]/input")
-        password.send_keys("")
+        password.send_keys(os.environ['GAS_PASS'])
         login = driver.find_element(By.XPATH,"/html/body/div[2]/div[3]/section/div/fieldset/form/busy-button/div/button")
         login.click()
         time.sleep(30)
@@ -50,7 +51,7 @@ class Utility(object):
         username = driver.find_element(By.XPATH, "/html/body/div/div/div[1]/div/div[1]/div/form/input[1]")
         username.send_keys("zeehussain")
         password = driver.find_element(By.XPATH,"/html/body/div/div/div[1]/div/div[1]/div/form/input[2]")
-        password.send_keys("")
+        password.send_keys(os.environ['ELEC_PASS'])
         login = driver.find_element(By.XPATH,"/html/body/div/div/div[1]/div/div[1]/div/form/button")
         login.click()
         time.sleep(15)

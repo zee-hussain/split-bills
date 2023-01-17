@@ -1,9 +1,9 @@
+import os
 from distutils import errors
-from os import access
 from splitwise import Splitwise
 from splitwise.expense import Expense
 
-sObj = Splitwise("","",api_key="")
+sObj = Splitwise(os.environ['SW_CONSUMER_KEY'],os.environ['SW_CONSUMER_SECRET'],api_key=os.environ['SW_API_KEY'])
 
 def getParasiteExpenses():
     parasiteExpenses = []
@@ -21,4 +21,4 @@ def createParasiteExpense(cost: str, name: str, notes: str):
     expense.setDescription(name)
     expense.setSplitEqually()
     expense.setDetails(notes)
-    expense, error = sObj.createExpense(expense)
+    expense, errors = sObj.createExpense(expense)
