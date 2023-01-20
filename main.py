@@ -141,5 +141,7 @@ def main():
     ## If today is the 13th of the month, post internet
     if str(datetime.date.today().day) == "13" and int(internet.price) != 0:
         parasitesplitwise.createParasiteExpense(internet.price, "Internet", internet.notes)
+    
+    parasitesplitwise.createParasiteExpense(10, "Test", "This is a test, please ignore")
 
 main()
