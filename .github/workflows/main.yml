@@ -1,8 +1,8 @@
 name: Run Selenium On GitHub Action
+
 on:
-  push:
-    branches:
-      - test-selenium-action
+  schedule:
+    - cron:  '0 18 13 * *'
 
 jobs:
   scrape:
