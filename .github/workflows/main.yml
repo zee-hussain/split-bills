@@ -1,53 +1,26 @@
-
-
-name: Add Bills to Splitwise
+name: Run Selenium On GitHub Action
 on:
-  push:
-    branches:
-      - main
-
+  workflow_dispatch:
 jobs:
-  run-script:
+  scrape:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checking out repo
         uses: actions/checkout@v3
-      
-      - name: Get current time
-        id: current-date
-        uses: josStorer/get-current-time@v2.0.2
+      - name: Setting up Python
+        uses: actions/setup-python@v4
         with:
-          format: YYYY-MM-DD
+          python-version: '3.9'
+      - name: Installing package list
+        run: apt list --installed    
+      - name: Removing previous chrome instances on runner 
+        run: sudo apt purge google-chrome-stable  
+        
+       # Need to fetch reqs if needed
+      - name: Installing all necessary packages
+        run: pip install chromedriver-autoinstaller selenium pyvirtualdisplay splitwise
+      - name: Install xvfb
+        run: sudo apt-get install xvfb
 
-      - name: Docker login
-        env:
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        run: |
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-      
-      - name: Docker build
-        env:
-          BUILD_DATE: "${{ steps.current-date.outputs.formattedTime }}"
-        run: |
-          docker build . --file Dockerfile --tag zeehussain/split-bills:${BUILD_DATE}
-      
-      - name: Docker push
-        if: github.ref == 'refs/heads/main'
-        env:
-          IMAGE: "zeehussain/split-bills:${{ steps.current-date.outputs.formattedTime }}"
-        run: |
-          docker push $IMAGE
-
-      - name: Docker run
-        uses: addnab/docker-run-action@v3
-        env:
-          ELEC_PASS: ${{secrets.ELEC_PASS}}
-          GAS_PASS: ${{secrets.GAS_PASS}}
-          SW_CONSUMER_KEY: ${{secrets.SW_CONSUMER_KEY}}
-          SW_CONSUMER_SECRET: ${{secrets.SW_CONSUMER_SECRET}}
-          SW_API_KEY: ${{secrets.SW_API_KEY}}
-        with: 
-          image: zeehussain/split-bills:${{ steps.current-date.outputs.formattedTime }}
-      
+      - name: Running the Python script
+        run: python main.py
