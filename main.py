@@ -5,10 +5,26 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import time
+import chromedriver_autoinstaller
+from pyvirtualdisplay import Display
+display = Display(visible=0, size=(800, 800))  
+display.start()
 
-options = Options()
-options.headless = True
-driver = webdriver.Chrome("/usr/local/bin/chromedriver", options=options)
+chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
+                                      # and if it doesn't exist, download it automatically,
+                                      # then add chromedriver to path
+
+chrome_options = webdriver.ChromeOptions()    
+options = [
+  # Define window size here
+   "--window-size=1200,1200",
+    "--ignore-certificate-errors"
+]
+
+for option in options:
+    chrome_options.add_argument(option)
+
+driver = webdriver.Chrome(options = chrome_options)
 
 
 class Utility(object):
@@ -115,5 +131,6 @@ def main():
     ## If today is the 13th of the month, post internet
     if str(datetime.date.today().day) == "13" and int(internet.price) != 0:
         parasitesplitwise.createParasiteExpense(internet.price, "Internet", internet.notes)
+    
 
 main()
