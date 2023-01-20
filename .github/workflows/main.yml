@@ -1,6 +1,9 @@
 name: Run Selenium On GitHub Action
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - test-selenium-action
+
 jobs:
   scrape:
     runs-on: ubuntu-latest
@@ -24,3 +27,9 @@ jobs:
 
       - name: Running the Python script
         run: python main.py
+        env:
+          ELEC_PASS: ${{secrets.ELEC_PASS}}
+          GAS_PASS: ${{secrets.GAS_PASS}}
+          SW_CONSUMER_KEY: ${{secrets.SW_CONSUMER_KEY}}
+          SW_CONSUMER_SECRET: ${{secrets.SW_CONSUMER_SECRET}}
+          SW_API_KEY: ${{secrets.SW_API_KEY}}
