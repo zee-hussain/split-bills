@@ -100,7 +100,7 @@ class Utility(object):
             self.notes = data[1]
         elif self.name == "internet":
             self.price = "70"
-            self.notes = "Internet - " + str(datetime.date.today()) + ". Posted by ParasiteBot"
+            self.notes = "Internet - " + str(datetime.date.today()) + ". Posted by CocoaBot"
 
 
 
