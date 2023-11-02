@@ -10,14 +10,14 @@ def getParasiteExpenses():
     allExpenses = sObj.getExpenses()
     for i in range(0, len(allExpenses)):
         groupId = allExpenses[i].getGroupId()
-        if groupId == 19337393:
+        if groupId == 52367945:
             parasiteExpenses.append(allExpenses[i].getDetails())
     return parasiteExpenses
 
 def createParasiteExpense(cost: str, name: str, notes: str):
     expense = Expense()
     expense.setCost(cost)
-    expense.setGroupId(19337393)
+    expense.setGroupId(52367945)
     expense.setDescription(name)
     expense.setSplitEqually()
     expense.setDetails(notes)
