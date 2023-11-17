@@ -37,11 +37,11 @@ class Utility(object):
         ## Login to CoA
         driver.get("https://www.texasgasservice.com/account")
         driver.implicitly_wait(30)
-        username = driver.find_element(By.XPATH, "/html/body/div[2]/div[3]/section/div/fieldset/form/div[1]/input")
+        username = driver.find_element(By.XPATH, "/html/body/div[2]/app-root/ogs-login-page/section/div/ogs-login-form/fieldset/form/div[1]/input")
         username.send_keys("zeehussain")
-        password = driver.find_element(By.XPATH,"/html/body/div[2]/div[3]/section/div/fieldset/form/div[2]/input")
+        password = driver.find_element(By.XPATH,"/html/body/div[2]/app-root/ogs-login-page/section/div/ogs-login-form/fieldset/form/div[2]/input")
         password.send_keys(os.environ['GAS_PASS'])
-        login = driver.find_element(By.XPATH,"/html/body/div[2]/div[3]/section/div/fieldset/form/busy-button/div/button")
+        login = driver.find_element(By.XPATH,"/html/body/div[2]/app-root/ogs-login-page/section/div/ogs-login-form/fieldset/form/ogs-busy-button/button")
         login.click()
         time.sleep(30)
 
