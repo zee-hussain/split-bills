@@ -46,12 +46,12 @@ class Utility(object):
         time.sleep(30)
 
         ## Get bill post date
-        dueDate = driver.find_element(By.XPATH,"/html/body/div[2]/div[2]/div[2]/section[1]/div[2]/div[1]/span[2]")
+        dueDate = driver.find_element(By.XPATH,"/html/body/div[2]/app-root/ogs-account-page/div/ogs-account-profile-card/section/div/div[2]/div[1]/span[2]")
         dueDate = str(dueDate.text)
         dueDate = dueDate[5:]
 
         ## Get bill amount
-        totalAmt = driver.find_element(By.XPATH,"/html/body/div[2]/div[2]/div[2]/section[1]/div[2]/div[1]/span[1]")
+        totalAmt = driver.find_element(By.XPATH,"/html/body/div[2]/app-root/ogs-account-page/div/ogs-account-profile-card/section/div/div[2]/div[1]/span[1]")
         totalAmt = str(totalAmt.text)
         totalAmt = totalAmt[1:]
 
