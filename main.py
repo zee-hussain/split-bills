@@ -37,6 +37,8 @@ class Utility(object):
         ## Login to CoA
         driver.get("https://www.texasgasservice.com/account")
         driver.implicitly_wait(30)
+        reject_cookies = driver.find_element(By.XPATH, "/html/body/div[5]/div[2]/div/div[1]/div/div[2]/div/button[2]")
+        reject_cookies.click()
         username = driver.find_element(By.XPATH, "/html/body/div[2]/app-root/ogs-login-page/section/div/ogs-login-form/fieldset/form/div[1]/input")
         username.send_keys("zeehussain")
         password = driver.find_element(By.XPATH,"/html/body/div[2]/app-root/ogs-login-page/section/div/ogs-login-form/fieldset/form/div[2]/input")
